@@ -12,27 +12,30 @@ namespace CSharpBasics
             Console.ReadKey(); // What happens if you run the app without this line?
 
             var animals = new string[] { "Triceratops", "Gorilla", "Corgi", "Toucan" };
-            var pattern = "[b-df-hj-np-tv-z]+";
+            var vowels = new char[] { 'a', 'e', 'i', 'o', 'u', 'y' };
 
             foreach (var animal in animals)
             {
-                var syllables = Regex.Split(animal, pattern, RegexOptions.IgnoreCase);
+                int count = 0;
 
-                var combined = string.Concat(syllables);
-
-                Console.WriteLine(combined);
-
-                Console.WriteLine(syllables.Length);
-
-                foreach (var i in syllables)
+                foreach (var c in animal)
                 {
-                    Console.WriteLine(i);
+                    if(vowels.Contains(c))
+                    {
+                        count++;
+                    }
                 }
 
-                if (combined.Length == 2)
+                if (animal.Contains("ou"))
+                {
+                    count--;
+                }
+
+                if (count == 2)
                 {
                     Console.WriteLine(animal);
                 }
+
             }
         }
     }
