@@ -89,13 +89,21 @@ namespace CSharpBasics
 
             //--- CALCULATOR ---//
 
+            Console.WriteLine(@"This program allows you to calculate in different ways:
+                                - Multiply a group of numbers by using the * operator ( * 1,2,3 would equal 6 )
+                                - Square each number in the group by using the ^2 operator ( ^2 1,2,3 would equal 1,4,9 )
+                                - Add the numbers in the group by ising the + operator ( + 1,2,3 would equal 6 )
+                                - Divide the numbers in the group by using the / operator ( / 6,3 would equal 2 )
+                                - Get the average of the group of numbers by using the avg operator ( avg 1,2,3 would equal 2 )
+                               ");
+
             string tryAgain = null;
             do
             {
-                Console.WriteLine("Please input 3 numbers 1-10 separated by commas:");
+                Console.WriteLine("Please input numbers 1-10 separated by commas:");
                 var numInput = Console.ReadLine();
                 Console.WriteLine(" ");
-                Console.WriteLine("Would you like to (m) multiply or (s) square these numbers?");
+
                 var operationChoice = Console.ReadLine();
                 Console.WriteLine(" ");
 
