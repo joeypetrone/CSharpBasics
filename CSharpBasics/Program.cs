@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -89,13 +90,22 @@ namespace CSharpBasics
 
             //--- CALCULATOR ---//
 
-            Console.WriteLine(@"This program allows you to calculate in different ways:
-                                - Multiply a group of numbers by using the * operator ( * 1,2,3 would equal 6 )
-                                - Square each number in the group by using the ^2 operator ( ^2 1,2,3 would equal 1,4,9 )
-                                - Add the numbers in the group by ising the + operator ( + 1,2,3 would equal 6 )
-                                - Divide the numbers in the group by using the / operator ( / 6,3 would equal 2 )
-                                - Get the average of the group of numbers by using the avg operator ( avg 1,2,3 would equal 2 )
-                               ");
+            Console.WriteLine(@"
+                                     ____       ___                 ____
+                                    /    \     /   \     |         /    \   
+                                    |         |_____|    |         |  
+                                    \____/    |     |    |____/    \____/
+
+
+        This program allows you to calculate in different ways:
+
+            - Multiply a group of numbers by using the * operator ( * 1,2,3 would equal 6 )
+            - Square each number in the group by using the ^2 operator ( ^2 1,2,3 would equal 1,4,9 )
+            - Add the numbers in the group by ising the + operator ( + 1,2,3 would equal 6 )
+            - Divide the numbers in the group by using the / operator ( / 6,3 would equal 2 )
+            - Get the average of the group of numbers by using the avg operator ( avg 1,2,3 would equal 2 )
+
+                    ");
 
             string tryAgain = null;
             do
@@ -104,18 +114,34 @@ namespace CSharpBasics
                 var numInput = Console.ReadLine();
                 Console.WriteLine(" ");
 
-                var operationChoice = Console.ReadLine();
-                Console.WriteLine(" ");
+                string operatorChoice;
+                string numberList;
 
-                var newNumbers = numInput.Split(",");
+                if (numInput.Substring(0, 1) == "^")
+                {
+                    operatorChoice = numInput.Substring(0, 2);
+                    Console.WriteLine(operatorChoice);
+                    numberList = numInput.Substring(2);
+                    Console.WriteLine(numberList);
+                } else
+                {
+                    operatorChoice = numInput.Substring(0, 1);
+                    Console.WriteLine(operatorChoice);
+                    numberList = numInput.Substring(2);
+                    Console.WriteLine(numberList);
+                }
+
+
+
+                var numbersOnly = numberList.Split(",");
 
                 var product = 1;
 
                 StringBuilder squaredNumbers = new StringBuilder();
 
-                if (operationChoice.ToLower() == "m")
+                if (operatorChoice == "*")
                 {
-                    foreach (var n in newNumbers)
+                    foreach (var n in numbersOnly)
                     {
                         var multiplicand = int.Parse(n);
 
@@ -125,19 +151,19 @@ namespace CSharpBasics
                     Console.WriteLine($"The product of {numInput} is {product}");
 
 
-                } else if (operationChoice.ToLower() == "s")
+                } else if (operatorChoice == "^2")
                 {
-                    for (int i = 0; i < newNumbers.Length; i++)
+                    for (int i = 0; i < numbersOnly.Length; i++)
                     {
                         int result = 1;
 
-                        var multiplicand = int.Parse(newNumbers[i]);
+                        var multiplicand = int.Parse(numbersOnly[i]);
 
                         result = multiplicand * multiplicand;
 
                         squaredNumbers.Append(result.ToString());
 
-                        if (i < newNumbers.Length - 1)
+                        if (i < numbersOnly.Length - 1)
                         {
                             squaredNumbers.Append(",");
                         }
