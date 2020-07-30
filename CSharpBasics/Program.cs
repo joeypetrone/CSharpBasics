@@ -110,67 +110,102 @@ namespace CSharpBasics
             string tryAgain = null;
             do
             {
-                Console.WriteLine("Please input numbers 1-10 separated by commas:");
+                Console.WriteLine("Please input the operator followed by a space and then 3 numbers 1-10 separated by commas:");
                 var numInput = Console.ReadLine();
                 Console.WriteLine(" ");
 
                 string operatorChoice;
                 string numberList;
 
+                // Check to see which kind of operator was used and save that operator to a variable
+                // Save the comma separated number list to a variable
                 if (numInput.Substring(0, 1) == "^")
                 {
                     operatorChoice = numInput.Substring(0, 2);
-                    Console.WriteLine(operatorChoice);
-                    numberList = numInput.Substring(2);
-                    Console.WriteLine(numberList);
-                } else
+                    numberList = numInput.Substring(3);
+                }
+                else
                 {
                     operatorChoice = numInput.Substring(0, 1);
-                    Console.WriteLine(operatorChoice);
                     numberList = numInput.Substring(2);
-                    Console.WriteLine(numberList);
                 }
 
 
-
+                // Remove the commas in the number list
                 var numbersOnly = numberList.Split(",");
 
-                var product = 1;
-
-                StringBuilder squaredNumbers = new StringBuilder();
-
-                if (operatorChoice == "*")
+                // Initiate a funcion based on it's operator
+                switch (operatorChoice)
                 {
-                    foreach (var n in numbersOnly)
-                    {
-                        var multiplicand = int.Parse(n);
+                    case "*": /// Multiplication
+                        var product = 1;
 
-                        product *= multiplicand;
-                    }
-
-                    Console.WriteLine($"The product of {numInput} is {product}");
-
-
-                } else if (operatorChoice == "^2")
-                {
-                    for (int i = 0; i < numbersOnly.Length; i++)
-                    {
-                        int result = 1;
-
-                        var multiplicand = int.Parse(numbersOnly[i]);
-
-                        result = multiplicand * multiplicand;
-
-                        squaredNumbers.Append(result.ToString());
-
-                        if (i < numbersOnly.Length - 1)
+                        foreach (var n in numbersOnly)
                         {
-                            squaredNumbers.Append(",");
+                            var multiplicand = int.Parse(n);
+
+                            product *= multiplicand;
                         }
-                    }
 
-                    Console.WriteLine($"{numInput} are {squaredNumbers.ToString()} when squared");
+                        Console.WriteLine($"The product of {numberList} is {product}");
+                        break;
 
+                    case "^2": // Square Root
+                        StringBuilder squaredNumbers = new StringBuilder();
+
+                        for (int i = 0; i < numbersOnly.Length; i++)
+                        {
+                            int result = 1;
+
+                            var multiplicand = int.Parse(numbersOnly[i]);
+
+                            result = multiplicand * multiplicand;
+
+                            squaredNumbers.Append(result.ToString());
+
+                            if (i < numbersOnly.Length - 1)
+                            {
+                                squaredNumbers.Append(",");
+                            }
+                        }
+                        break;
+                    case "+": // Addition
+                        var sum = 0;
+
+                        foreach (var n in numbersOnly)
+                        {
+                            var addend = int.Parse(n);
+
+                            sum += addend;
+                        }
+
+                        Console.WriteLine($"The product of {numberList} is {sum}");
+                        break;
+                    case "/": // Division
+                        var quotient = 1f;
+
+                        for (int i = 0; i < numbersOnly.Length; i++)
+                        {
+                            if (i == 0)
+                            {
+                                float dividend = float.Parse(numbersOnly[i]);
+                                float divisor = float.Parse(numbersOnly[i + 1]);
+
+                                quotient = dividend / divisor;
+                            }
+                            else if (i + 1 < numbersOnly.Length)
+                            {
+                                float divisor = float.Parse(numbersOnly[i + 1]);
+
+                                quotient /= divisor;
+                            }
+                        }
+
+                        Console.WriteLine($"The product of {numberList} is {quotient}");
+                        break;
+                    default: // Console error if incorrect operator
+                        Console.WriteLine("ERROR: Incorrect operator");
+                        break;
                 }
 
                 Console.WriteLine(" ");
