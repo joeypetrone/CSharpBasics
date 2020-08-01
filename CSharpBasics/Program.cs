@@ -235,7 +235,7 @@ namespace CSharpBasics
             //        Console.WriteLine(" ");
             //    } while (tryAgain.ToLower() != "n");
 
-                                        // LETTER LOOPS //
+            // LETTER LOOPS //
 
             //Console.WriteLine("LETTER LOOPS!!");
             //Console.WriteLine(" ");
@@ -269,37 +269,180 @@ namespace CSharpBasics
             //    Console.WriteLine(" ");
             //} while (tryAgain.ToLower() != "n");
 
-                            // MASK SENSITIVE INFORMATION //
+            // MASK SENSITIVE INFORMATION //
+
+            //do
+            //{
+            //    Console.WriteLine("Enter a secret word: ");
+            //    var maskInfoInput = Console.ReadLine();
+
+            //    var maskInfoOutput = "";
+            //    for (var i=0; i < maskInfoInput.Length; i++)
+            //    {
+            //        if (maskInfoInput.Length <= 4)
+            //        {
+            //            maskInfoOutput += "*";
+            //        } 
+            //        else if (i < maskInfoInput.Length - 4)
+            //        {
+            //            maskInfoOutput += "*";
+            //        }
+            //        else
+            //        {
+            //            maskInfoOutput += maskInfoInput[i];
+            //        }
+            //    }
+
+            //    Console.WriteLine($"{maskInfoOutput}");
+
+            //    Console.WriteLine(" ");
+            //    Console.WriteLine("Would you like to try it again? (Y or N)");
+            //    tryAgain = Console.ReadLine();
+            //    Console.WriteLine(" ");
+            //} while (tryAgain.ToLower() != "n");
+
+            // VALIDATOR //
+
+            Console.WriteLine("Welcome to the Validator program!");
+            Console.WriteLine(" ");
 
             do
             {
-                Console.WriteLine("Enter a secret word: ");
-                var maskInfoInput = Console.ReadLine();
+                // Pin validation
+                //if (pinValidator())
+                //{
+                //    Console.WriteLine("That is a valid pin, thank you.");
+                //}
+                //else
+                //{
+                //    Console.WriteLine("That pin has an invalid format.");
+                //}
+                //Console.WriteLine(" ");
 
-                var maskInfoOutput = "";
-                for (var i=0; i < maskInfoInput.Length; i++)
+                // Phone number validation
+                if (phoneNumberValidator())
                 {
-                    if (maskInfoInput.Length <= 4)
-                    {
-                        maskInfoOutput += "*";
-                    } 
-                    else if (i < maskInfoInput.Length - 4)
-                    {
-                        maskInfoOutput += "*";
-                    }
-                    else
-                    {
-                        maskInfoOutput += maskInfoInput[i];
-                    }
+                    Console.WriteLine("That is a valid phone number, thank you.");
                 }
+                else
+                {
+                    Console.WriteLine("That phone number has an invalid format.");
+                }
+                Console.WriteLine(" ");
 
-                Console.WriteLine($"{maskInfoOutput}");
+                // Email address validation
+                //if (emailValidator())
+                //{
+                //    Console.WriteLine("That is a valid email address, thank you.");
+                //}
+                //else
+                //{
+                //    Console.WriteLine("That email address has an invalid format.");
+                //}
 
                 Console.WriteLine(" ");
-                Console.WriteLine("Would you like to try it again? (Y or N)");
+                Console.WriteLine("Would you like to try Validator again? (Y or N)");
                 tryAgain = Console.ReadLine();
                 Console.WriteLine(" ");
             } while (tryAgain.ToLower() != "n");
+
+            // Pin validator method
+            static bool pinValidator()
+            {
+                Console.WriteLine("Enter a pin code: ");
+                var pinInput = Console.ReadLine();
+
+                bool pinIsOnlyDigits = digitChecker(pinInput);
+
+                bool pinIsValid = false;
+
+                if (pinInput.Length >= 4 && pinInput.Length <= 8 && pinIsOnlyDigits)
+                {
+                    pinIsValid = true;
+                }
+                else
+                {
+                    pinIsValid = false;
+                }
+
+                return pinIsValid;
+            }
+
+            // Phone number validator method
+            static bool phoneNumberValidator()
+            {
+                Console.WriteLine("Enter a phone number: ");
+                var phoneNumberInput = Console.ReadLine();
+
+                bool containsValidSymbols = phoneSymbolChecker(phoneNumberInput);
+
+                if (containsValidSymbols)
+                {
+                    Console.WriteLine("Yep!");
+                }
+                else
+                {
+                    Console.WriteLine("Nope!");
+                }
+
+                bool pinIsOnlyDigits = digitChecker(phoneNumberInput);
+
+                bool phoneNumberIsValid = false;
+                for (var i = 0; i < phoneNumberInput.Length; i++)
+                {
+                    if (phoneNumberInput.Length == 10)
+                    {
+                        phoneNumberIsValid = true;
+                    }
+                    else
+                    {
+                        phoneNumberIsValid = false;
+                    }
+                }
+
+                return phoneNumberIsValid;
+            }
+
+            // Email address validator method
+            static bool emailValidator()
+            {
+                Console.WriteLine("Enter an email address: ");
+                var emailInput = Console.ReadLine();
+
+                bool emailIsValid = false;
+                for (var i = 0; i < emailInput.Length; i++)
+                {
+                    if (emailInput.Length >= 4 && emailInput.Length <= 8)
+                    {
+
+                        emailIsValid = true;
+                    }
+                    else
+                    {
+                        emailIsValid = false;
+                    }
+                }
+
+                return emailIsValid;
+            }
+
+            static bool digitChecker(string input)
+            {
+                Regex regex = new Regex("^[0-9]+$");
+
+                Match match = regex.Match(input);
+
+                return match.Success;
+            }
+
+            static bool phoneSymbolChecker(string phoneNumber)
+            {
+                Regex regex = new Regex("^[\\w\\s]+$");
+
+                Match match = regex.Match(phoneNumber);
+
+                return match.Success;
+            }
         }
     }
 }
