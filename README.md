@@ -1,4 +1,4 @@
-# CSharpBasics
+# C# Basics
 
 ## About
 
