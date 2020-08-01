@@ -12,7 +12,7 @@ namespace CSharpBasics
     {
         static void Main(string[] args)
         {
-            //--- HELLO WORLD & CONSOLE INPUT ---//
+                                           //--- HELLO WORLD & CONSOLE INPUT ---//
 
             //Console.WriteLine("Howdy Y'all!!");
             //Console.ReadKey(); // What happens if you run the app without this line?
@@ -88,7 +88,7 @@ namespace CSharpBasics
             //                 {greetings[int.Parse(input) - 1]}";
             //Console.WriteLine(response);
 
-            //--- CALCULATOR ---//
+                                         //--- CALCULATOR ---//
 
             Console.WriteLine(@"
                                      ____       ___                 ____
@@ -114,8 +114,8 @@ namespace CSharpBasics
                 var numInput = Console.ReadLine();
                 Console.WriteLine(" ");
 
-                string operatorChoice;
-                string numberList;
+                string operatorChoice = null;
+                string numberList = null;
 
                 // Check to see which kind of operator was used and save that operator to a variable
                 // Save the comma separated number list to a variable
@@ -124,7 +124,11 @@ namespace CSharpBasics
                     operatorChoice = numInput.Substring(0, 2);
                     numberList = numInput.Substring(3);
                 }
-                else
+                else if (numInput.Substring(0, 3) == "avg")
+                {
+                    operatorChoice = numInput.Substring(0, 3);
+                    numberList = numInput.Substring(4);
+                } else if (numInput.Substring(0, 1) != "")
                 {
                     operatorChoice = numInput.Substring(0, 1);
                     numberList = numInput.Substring(2);
@@ -168,6 +172,8 @@ namespace CSharpBasics
                                 squaredNumbers.Append(",");
                             }
                         }
+
+                        Console.WriteLine($"{numberList} squared is {squaredNumbers}");
                         break;
                     case "+": // Addition
                         var sum = 0;
@@ -179,7 +185,7 @@ namespace CSharpBasics
                             sum += addend;
                         }
 
-                        Console.WriteLine($"The product of {numberList} is {sum}");
+                        Console.WriteLine($"The sum of {numberList} is {sum}");
                         break;
                     case "/": // Division
                         var quotient = 1f;
@@ -200,8 +206,23 @@ namespace CSharpBasics
                                 quotient /= divisor;
                             }
                         }
+                        Console.WriteLine($"The quotient of {numberList} is {quotient}");
+                        break;
+                    case "avg": // Average
+                        var average = 1f;
 
-                        Console.WriteLine($"The product of {numberList} is {quotient}");
+                        var avgSum = 0f;
+
+                        foreach (var n in numbersOnly)
+                        {
+                            float avgAddend = int.Parse(n);
+
+                            avgSum += avgAddend;
+                        }
+
+                        average = avgSum / numbersOnly.Length;
+
+                        Console.WriteLine($"The average of {numberList} is {average}");
                         break;
                     default: // Console error if incorrect operator
                         Console.WriteLine("ERROR: Incorrect operator");
