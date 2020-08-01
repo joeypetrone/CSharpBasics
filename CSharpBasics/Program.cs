@@ -237,31 +237,63 @@ namespace CSharpBasics
 
                                         // LETTER LOOPS //
 
-            Console.WriteLine("LETTER LOOPS!!");
-            Console.WriteLine(" ");
+            //Console.WriteLine("LETTER LOOPS!!");
+            //Console.WriteLine(" ");
+
+            //do
+            //{
+            //    Console.WriteLine("Enter your favorite lowercase or uppercase letters with no spaces inbetween: ");
+            //    var letterLoopInput = Console.ReadLine();
+
+            //    var letterLoopOutput = "";
+            //    for (var i=0; i < letterLoopInput.Length; i++)
+            //    {
+            //        letterLoopOutput += letterLoopInput[i].ToString().ToUpper();
+
+            //        for (var j=0; j < i; j++)
+            //        {
+            //            letterLoopOutput += letterLoopInput[i].ToString().ToLower();
+            //        }
+
+            //        if (i < letterLoopInput.Length - 1)
+            //        {
+            //            letterLoopOutput += "-";
+            //        }
+            //    }
+
+            //    Console.WriteLine($"{letterLoopOutput}");
+
+            //    Console.WriteLine(" ");
+            //    Console.WriteLine("Would you like to try it again? (Y or N)");
+            //    tryAgain = Console.ReadLine();
+            //    Console.WriteLine(" ");
+            //} while (tryAgain.ToLower() != "n");
+
+                            // MASK SENSITIVE INFORMATION //
 
             do
             {
-                Console.WriteLine("Enter your favorite lowercase or uppercase letters with no spaces inbetween: ");
-                var letterLoopInput = Console.ReadLine();
+                Console.WriteLine("Enter a secret word: ");
+                var maskInfoInput = Console.ReadLine();
 
-                var letterLoopOutput = "";
-                for (var i=0; i < letterLoopInput.Length; i++)
+                var maskInfoOutput = "";
+                for (var i=0; i < maskInfoInput.Length; i++)
                 {
-                    letterLoopOutput += letterLoopInput[i].ToString().ToUpper();
-
-                    for (var j=0; j < i; j++)
+                    if (maskInfoInput.Length <= 4)
                     {
-                        letterLoopOutput += letterLoopInput[i].ToString().ToLower();
+                        maskInfoOutput += "*";
+                    } 
+                    else if (i < maskInfoInput.Length - 4)
+                    {
+                        maskInfoOutput += "*";
                     }
-
-                    if (i < letterLoopInput.Length - 1)
+                    else
                     {
-                        letterLoopOutput += "-";
+                        maskInfoOutput += maskInfoInput[i];
                     }
                 }
 
-                Console.WriteLine($"{letterLoopOutput}");
+                Console.WriteLine($"{maskInfoOutput}");
 
                 Console.WriteLine(" ");
                 Console.WriteLine("Would you like to try it again? (Y or N)");
