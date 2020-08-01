@@ -90,7 +90,7 @@ namespace CSharpBasics
 
             //--- CALCULATOR ---//
 
-            //    Console.WriteLine(@"
+            //Console.WriteLine(@"
             //                             ____       ___                 ____
             //                            /    \     /   \     |         /    \   
             //                            |         |_____|    |         |  
@@ -107,133 +107,137 @@ namespace CSharpBasics
 
             //            ");
 
-                string tryAgain = null;
-            //    do
+            string tryAgain = null;
+            //do
+            //{
+            //    Console.WriteLine("Please input the operator followed by a space and then 3 numbers 1-10 separated by commas:");
+            //    var numInput = Console.ReadLine();
+            //    Console.WriteLine(" ");
+
+            //    var choices = numInput.Split(" ");
+            //    string operatorChoice = choices[0];
+            //    string numberList = choices[1];
+
+
+
+            //    // Check to see which kind of operator was used and save that operator to a variable
+            //    // Save the comma separated number list to a variable
+            //    if (numInput.Substring(0, 1) == "^")
             //    {
-            //        Console.WriteLine("Please input the operator followed by a space and then 3 numbers 1-10 separated by commas:");
-            //        var numInput = Console.ReadLine();
-            //        Console.WriteLine(" ");
-
-            //        string operatorChoice = null;
-            //        string numberList = null;
-
-            //        // Check to see which kind of operator was used and save that operator to a variable
-            //        // Save the comma separated number list to a variable
-            //        if (numInput.Substring(0, 1) == "^")
-            //        {
-            //            operatorChoice = numInput.Substring(0, 2);
-            //            numberList = numInput.Substring(3);
-            //        }
-            //        else if (numInput.Substring(0, 3) == "avg")
-            //        {
-            //            operatorChoice = numInput.Substring(0, 3);
-            //            numberList = numInput.Substring(4);
-            //        } else if (numInput.Substring(0, 1) != "")
-            //        {
-            //            operatorChoice = numInput.Substring(0, 1);
-            //            numberList = numInput.Substring(2);
-            //        }
+            //        operatorChoice = numInput.Substring(0, 2);
+            //        numberList = numInput.Substring(3);
+            //    }
+            //    else if (numInput.Substring(0, 3) == "avg")
+            //    {
+            //        operatorChoice = numInput.Substring(0, 3);
+            //        numberList = numInput.Substring(4);
+            //    }
+            //    else if (numInput.Substring(0, 1) != "")
+            //    {
+            //        operatorChoice = numInput.Substring(0, 1);
+            //        numberList = numInput.Substring(2);
+            //    }
 
 
-            //        // Remove the commas in the number list
-            //        var numbersOnly = numberList.Split(",");
+            //    // Remove the commas in the number list
+            //    var numbersOnly = numberList.Split(",");
 
-            //        // Initiate a funcion based on it's operator
-            //        switch (operatorChoice)
-            //        {
-            //            case "*": /// Multiplication
-            //                var product = 1;
+            //    // Initiate a funcion based on it's operator
+            //    switch (operatorChoice)
+            //    {
+            //        case "*": /// Multiplication
+            //            var product = 1;
 
-            //                foreach (var n in numbersOnly)
+            //            foreach (var n in numbersOnly)
+            //            {
+            //                var multiplicand = int.Parse(n);
+
+            //                product *= multiplicand;
+            //            }
+
+            //            Console.WriteLine($"The product of {numberList} is {product}");
+            //            break;
+
+            //        case "^2": // Square Root
+            //            StringBuilder squaredNumbers = new StringBuilder();
+
+            //            for (int i = 0; i < numbersOnly.Length; i++)
+            //            {
+            //                int result = 1;
+
+            //                var multiplicand = int.Parse(numbersOnly[i]);
+
+            //                result = multiplicand * multiplicand;
+
+            //                squaredNumbers.Append(result.ToString());
+
+            //                if (i < numbersOnly.Length - 1)
             //                {
-            //                    var multiplicand = int.Parse(n);
-
-            //                    product *= multiplicand;
+            //                    squaredNumbers.Append(",");
             //                }
+            //            }
 
-            //                Console.WriteLine($"The product of {numberList} is {product}");
-            //                break;
+            //            Console.WriteLine($"{numberList} squared is {squaredNumbers}");
+            //            break;
+            //        case "+": // Addition
+            //            var sum = 0;
 
-            //            case "^2": // Square Root
-            //                StringBuilder squaredNumbers = new StringBuilder();
+            //            foreach (var n in numbersOnly)
+            //            {
+            //                var addend = int.Parse(n);
 
-            //                for (int i = 0; i < numbersOnly.Length; i++)
+            //                sum += addend;
+            //            }
+
+            //            Console.WriteLine($"The sum of {numberList} is {sum}");
+            //            break;
+            //        case "/": // Division
+            //            var quotient = 1f;
+
+            //            for (int i = 0; i < numbersOnly.Length; i++)
+            //            {
+            //                if (i == 0)
             //                {
-            //                    int result = 1;
+            //                    float dividend = float.Parse(numbersOnly[i]);
+            //                    float divisor = float.Parse(numbersOnly[i + 1]);
 
-            //                    var multiplicand = int.Parse(numbersOnly[i]);
-
-            //                    result = multiplicand * multiplicand;
-
-            //                    squaredNumbers.Append(result.ToString());
-
-            //                    if (i < numbersOnly.Length - 1)
-            //                    {
-            //                        squaredNumbers.Append(",");
-            //                    }
+            //                    quotient = dividend / divisor;
             //                }
-
-            //                Console.WriteLine($"{numberList} squared is {squaredNumbers}");
-            //                break;
-            //            case "+": // Addition
-            //                var sum = 0;
-
-            //                foreach (var n in numbersOnly)
+            //                else if (i + 1 < numbersOnly.Length)
             //                {
-            //                    var addend = int.Parse(n);
+            //                    float divisor = float.Parse(numbersOnly[i + 1]);
 
-            //                    sum += addend;
+            //                    quotient /= divisor;
             //                }
+            //            }
+            //            Console.WriteLine($"The quotient of {numberList} is {quotient}");
+            //            break;
+            //        case "avg": // Average
+            //            var average = 1f;
 
-            //                Console.WriteLine($"The sum of {numberList} is {sum}");
-            //                break;
-            //            case "/": // Division
-            //                var quotient = 1f;
+            //            var avgSum = 0f;
 
-            //                for (int i = 0; i < numbersOnly.Length; i++)
-            //                {
-            //                    if (i == 0)
-            //                    {
-            //                        float dividend = float.Parse(numbersOnly[i]);
-            //                        float divisor = float.Parse(numbersOnly[i + 1]);
+            //            foreach (var n in numbersOnly)
+            //            {
+            //                float avgAddend = int.Parse(n);
 
-            //                        quotient = dividend / divisor;
-            //                    }
-            //                    else if (i + 1 < numbersOnly.Length)
-            //                    {
-            //                        float divisor = float.Parse(numbersOnly[i + 1]);
+            //                avgSum += avgAddend;
+            //            }
 
-            //                        quotient /= divisor;
-            //                    }
-            //                }
-            //                Console.WriteLine($"The quotient of {numberList} is {quotient}");
-            //                break;
-            //            case "avg": // Average
-            //                var average = 1f;
+            //            average = avgSum / numbersOnly.Length;
 
-            //                var avgSum = 0f;
+            //            Console.WriteLine($"The average of {numberList} is {average}");
+            //            break;
+            //        default: // Console error if incorrect operator
+            //            Console.WriteLine("ERROR: Incorrect operator");
+            //            break;
+            //    }
 
-            //                foreach (var n in numbersOnly)
-            //                {
-            //                    float avgAddend = int.Parse(n);
-
-            //                    avgSum += avgAddend;
-            //                }
-
-            //                average = avgSum / numbersOnly.Length;
-
-            //                Console.WriteLine($"The average of {numberList} is {average}");
-            //                break;
-            //            default: // Console error if incorrect operator
-            //                Console.WriteLine("ERROR: Incorrect operator");
-            //                break;
-            //        }
-
-            //        Console.WriteLine(" ");
-            //        Console.WriteLine("Would you like to try it again? (Y or N)");
-            //        tryAgain = Console.ReadLine();
-            //        Console.WriteLine(" ");
-            //    } while (tryAgain.ToLower() != "n");
+            //    Console.WriteLine(" ");
+            //    Console.WriteLine("Would you like to try it again? (Y or N)");
+            //    tryAgain = Console.ReadLine();
+            //    Console.WriteLine(" ");
+            //} while (tryAgain.ToLower() != "n");
 
             // LETTER LOOPS //
 
@@ -309,26 +313,26 @@ namespace CSharpBasics
             do
             {
                 // Pin validation
-                //if (pinValidator())
-                //{
-                //    Console.WriteLine("That is a valid pin, thank you.");
-                //}
-                //else
-                //{
-                //    Console.WriteLine("That pin has an invalid format.");
-                //}
-                //Console.WriteLine(" ");
-
-                // Phone number validation
-                if (phoneNumberValidator())
+                if (pinValidator())
                 {
-                    Console.WriteLine("That is a valid phone number, thank you.");
+                    Console.WriteLine("That is a valid pin, thank you.");
                 }
                 else
                 {
-                    Console.WriteLine("That phone number has an invalid format.");
+                    Console.WriteLine("That pin has an invalid format.");
                 }
                 Console.WriteLine(" ");
+
+                // Phone number validation
+                //if (phoneNumberValidator())
+                //{
+                //    Console.WriteLine("That is a valid phone number, thank you.");
+                //}
+                //else
+                //{
+                //    Console.WriteLine("That phone number has an invalid format.");
+                //}
+                //Console.WriteLine(" ");
 
                 // Email address validation
                 //if (emailValidator())
@@ -374,31 +378,7 @@ namespace CSharpBasics
                 Console.WriteLine("Enter a phone number: ");
                 var phoneNumberInput = Console.ReadLine();
 
-                bool containsValidSymbols = phoneSymbolChecker(phoneNumberInput);
-
-                if (containsValidSymbols)
-                {
-                    Console.WriteLine("Yep!");
-                }
-                else
-                {
-                    Console.WriteLine("Nope!");
-                }
-
-                bool pinIsOnlyDigits = digitChecker(phoneNumberInput);
-
-                bool phoneNumberIsValid = false;
-                for (var i = 0; i < phoneNumberInput.Length; i++)
-                {
-                    if (phoneNumberInput.Length == 10)
-                    {
-                        phoneNumberIsValid = true;
-                    }
-                    else
-                    {
-                        phoneNumberIsValid = false;
-                    }
-                }
+                bool phoneNumberIsValid = phoneNumberChecker(phoneNumberInput);
 
                 return phoneNumberIsValid;
             }
@@ -426,20 +406,54 @@ namespace CSharpBasics
                 return emailIsValid;
             }
 
+            // Checks if the phone number string is in correct format
+            static bool phoneNumberChecker(string phoneNumber)
+            {
+                bool validPhoneNumber = false;
+
+                string symbolList = "() -";
+
+                if (digitChecker(phoneNumber))
+                {
+                    validPhoneNumber = containsTen(phoneNumber);
+                }
+                else
+                {
+                    foreach (var c in phoneNumber)
+                    {
+                        if (symbolList.Contains(c))
+                        {
+                            //containsCorrectSymbols = true;
+                        }
+                        else
+                        {
+                            //containsCorrectSymbols = false;
+                        }
+                    }
+                }
+
+                // Checks if the string has exactly 10 chacters
+                static bool containsTen(string number)
+                {
+                    if (number.Length == 10)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+                return validPhoneNumber;
+            }
+
+            // Checks if the input has only numbers in the string
             static bool digitChecker(string input)
             {
                 Regex regex = new Regex("^[0-9]+$");
 
                 Match match = regex.Match(input);
-
-                return match.Success;
-            }
-
-            static bool phoneSymbolChecker(string phoneNumber)
-            {
-                Regex regex = new Regex("^[\\w\\s]+$");
-
-                Match match = regex.Match(phoneNumber);
 
                 return match.Success;
             }
